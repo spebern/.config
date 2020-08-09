@@ -201,6 +201,7 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
+exec nm-applet --indicator
 bar {
     position top
 
