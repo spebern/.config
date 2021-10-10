@@ -20,10 +20,18 @@ set $term alacritty
 # on the original workspace that the command was run on.
 set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec env RUST_BACKTRACE=1 swayrd > /tmp/swayrd.log 2>&1
+
 ### Output configuration
+
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg ~/.config/sway/wallpaper.jpg fill
+
+output eDP-1 pos 0 0 res 1920x1080
+output HTDMI-A-1 pos 1920 0 res 1920x1080
+
+exec --no-startup-id fcitx5 -d
 
 # Take a screenshot with all output and save it into screenshots
 bindsym F11 exec grim -t jpeg ~/screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg
@@ -41,10 +49,10 @@ bindsym $mod+F11 exec grim -t jpeg -g "$(slurp)" ~/screenshots/$(date +%Y-%m-%d_
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
+exec swayidle -w \
+  timeout 300 'swaylock -f -c 000000' \
+  timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+  before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -202,7 +210,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# exec waybar
+#exec waybar
 #
 # Status Bar:
 #
@@ -229,11 +237,44 @@ default_border pixel 1
 # get to the previous one instead
 workspace_auto_back_and_forth yes
 
-# borders are only shown when there are more than one windowos
+# borders are only shown when there are more than one windows
 # inside the workspace
 smart_borders yes
 
-bindsym $mod+Control+Shift+H move workspace to output right
-bindsym $mod+Control+Shift+L move workspace to output left
-bindsym $mod+Control+Shift+J move workspace to output down
-bindsym $mod+Control+Shift+K move workspace to output up
+output DP-2 {
+  position 0 0
+}
+
+output DP-1 {
+  position 2560 0
+  scale 1.5
+}
+
+bindsym $mod+Control+Shift+$right move workspace to output right
+bindsym $mod+Control+Shift+$left move workspace to output left
+bindsym $mod+Control+Shift+$down move workspace to output down
+bindsym $mod+Control+Shift+$up move workspace to output up
+
+bindsym $mod+Space exec env RUST_BACKTRACE=1 \
+    swayr switch-window >> /tmp/swayr.log 2>&1
+
+bindsym $mod+Delete exec env RUST_BACKTRACE=1 \
+    swayr quit-window > /tmp/swayr.log 2>&1
+
+bindsym $mod+Tab exec env RUST_BACKTRACE=1 \
+    swayr switch-to-urgent-or-lru-window >> /tmp/swayr.log 2>&1
+
+bindsym $mod+Next exec env RUST_BACKTRACE=1 \
+    swayr next-window >> /tmp/swayr.log 2>&2
+
+bindsym $mod+Prior exec env RUST_BACKTRACE=1 \
+    swayr prev-window >> /tmp/swayr.log 2>&2
+
+bindsym $mod+Shift+Space exec env RUST_BACKTRACE=1 \
+    swayr switch-workspace-or-window >> /tmp/swayr.log 2>&1
+
+bindsym $mod+c exec env RUST_BACKTRACE=1 \
+    swayr execute-swaymsg-command >> /tmp/swayr.log 2>&1
+
+bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 \
+    swayr execute-swayr-command >> /tmp/swayr.log 2>&1
