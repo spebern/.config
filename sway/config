@@ -21,15 +21,14 @@ set $term alacritty
 set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec env RUST_BACKTRACE=1 swayrd > /tmp/swayrd.log 2>&1
+exec nextcloud
 
 ### Output configuration
-
+###
+exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg ~/.config/sway/wallpaper.jpg fill
-
-output eDP-1 pos 0 0 res 1920x1080
-output HTDMI-A-1 pos 1920 0 res 1920x1080
 
 exec --no-startup-id fcitx5 -d
 
@@ -44,19 +43,6 @@ bindsym $mod+F11 exec grim -t jpeg -g "$(slurp)" ~/screenshots/$(date +%Y-%m-%d_
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-
-### Idle configuration
-#
-# Example configuration:
-#
-exec swayidle -w \
-  timeout 300 'swaylock -f -c 000000' \
-  timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-  before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Input configuration
 #
@@ -237,15 +223,6 @@ workspace_auto_back_and_forth yes
 # borders are only shown when there are more than one windows
 # inside the workspace
 smart_borders yes
-
-output DP-2 {
-  position 0 0
-}
-
-output DP-1 {
-  position 2560 0
-  scale 1.5
-}
 
 bindsym $mod+Control+Shift+$right move workspace to output right
 bindsym $mod+Control+Shift+$left move workspace to output left
