@@ -32,9 +32,6 @@ output * bg ~/.config/sway/wallpaper.jpg fill
 
 exec --no-startup-id fcitx5 -d
 
-exec swaync
-bindsym $mod+Shift+n exec swaync-client -t -sw
-
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
@@ -251,3 +248,5 @@ bindsym $mod+Shift+Space exec env RUST_BACKTRACE=1 swayr switch-workspace-or-win
 bindsym $mod+c exec env RUST_BACKTRACE=1 swayr execute-swaymsg-command >> /tmp/swayr.log 2>&1
 
 bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 swayr execute-swayr-command >> /tmp/swayr.log 2>&1
+
+include /etc/sway/config.d/50-systemd-user.conf
