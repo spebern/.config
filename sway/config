@@ -23,6 +23,19 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec env RUST_BACKTRACE=1 swayrd > /tmp/swayrd.log 2>&1
 exec nextcloud
 
+set $cl_high #00ff00
+set $cl_indi #d9d8d8
+set $cl_back #231f20
+set $cl_fore #d9d8d8
+set $cl_urge #ee2e24
+
+# Colors                border   bg       text     indi     childborder
+client.focused          $cl_high $cl_back $cl_fore $cl_high $cl_high
+client.focused_inactive $cl_back $cl_back $cl_fore $cl_back $cl_back
+client.unfocused        $cl_back $cl_back $cl_fore $cl_back $cl_back
+client.urgent           $cl_urge $cl_urge $cl_fore $cl_urge $cl_urge
+
+
 ### Output configuration
 ###
 exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
@@ -31,6 +44,14 @@ exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
 output * bg ~/.config/sway/wallpaper.jpg fill
 
 exec --no-startup-id fcitx5 -d
+
+set $clipboard "~/.local/share/clipman.json"
+
+exec wl-paste -t text --watch clipman store --max-items 1024
+bindsym $mod+y exec clipman pick --tool="wofi" --max-items=30
+bindsym $mod+Shift+y exec clipman clear --all && clipman clear -t wofi
+
+exec mako
 
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \

@@ -8,43 +8,58 @@
 
 window#waybar {
   background-color: #000000;
-  border-bottom: 3px solid rgba(76, 86, 105, 0.5);
-  color: #ffffff;
+  border-bottom: 0px;
+  color: #00ff00;
   transition-property: background-color;
-  transition-duration: .5s;
+  transition-duration: 0s;
 }
 
-window#waybar.hidden { opacity: 0.2; }
+window#waybar.hidden {
+  opacity: 0.2;
+}
 
 #workspaces button {
   background-color: transparent;
-  border-bottom: 3px solid transparent;
-  color: #ffffff;
+  border-bottom: 0px;
+  color: #00ff00;
   padding: 0 5px;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0);
   box-shadow: inherit;
-  border-bottom: 3px solid #ffffff;
+  border-bottom: 0px;
   text-shadow: inherit;
 }
 
 #workspaces button.focused {
-  background-color: #4c566a;
-  border-bottom: 3px solid #eff1f5;
+  border-bottom: 3px solid #00ff00;
 }
-#workspaces button.urgent { background-color: #bf616a; }
+#workspaces button.urgent {
+  background-color: #ff0000;
+}
 
 #backlight,
 #battery,
-#clock,
-#cpu,
-#memory,
-#mode,
-#network,
-#pulseaudio,
+#clock {
+  color: #00ff00;
+}
+#cpu {
+  color: #00ff00;
+}
+#memory {
+  color: #00ff00;
+}
+#mode {
+  color: #00ff00;
+}
+#network {
+  color: #00ff00;
+}
+#pulseaudio {
+  color: #00ff00;
+}
 #temperature {
   padding: 0 10px;
   margin: 0 4px;
@@ -56,12 +71,24 @@ window#waybar.hidden { opacity: 0.2; }
   animation-direction: alternate;
 }
 
-#battery { color: #8fbcbb; }
-#battery.critical:not(.charging) { color: #ff0000; }
+#battery {
+  color: #00ff00;
+}
+#battery.critical:not(.charging) {
+  color: #ff0000;
+}
 
-#network.disconnected { color: #ff0000; }
+#network.disconnected {
+  color: #ff0000;
+}
 
-#pulseaudio.muted { color: #ff0000; }
+#pulseaudio.muted {
+  color: #ff0000;
+}
 
-#temperature { color: #88c0d0; }
-#temperature.critical { color: #ff0000; }
+#temperature {
+  color: #00ff00;
+}
+#temperature.critical {
+  color: #ff0000;
+}
