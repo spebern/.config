@@ -36,13 +36,8 @@
     },
     "network": {
         "interval": 10,
-        "tooltip-format-wifi": "{essid} {frequency}MHz
-Strength: {signaldBm}dBm ({signalStrength}%)
-IP: {ipaddr}/{cidr}
-⬆: {bandwidthUpBits} ⬇: {bandwidthDownBits}",
-        "tooltip-format": "{ifname}
-{ipaddr}/{cidr}
-",
+        "tooltip-format-wifi": "{essid} {frequency}MHz Strength: {signaldBm}dBm ({signalStrength}%) IP: {ipaddr}/{cidr} ⬆: {bandwidthUpBits} ⬇: {bandwidthDownBits}",
+        "tooltip-format": "{ifname} {ipaddr}/{cidr} ",
         "on-click-right": "wl-copy $(ip address show up scope global | grep inet6 | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c6-)",
         "on-click": "wl-copy $(ip address show up scope global | grep inet | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c5-)",
         "format-disconnected": "Disconnected",
@@ -115,5 +110,6 @@ IP: {ipaddr}/{cidr}
         "sway/mode"
     ],
     "height": 20,
-    "layer": "top"
+    "layer": "top",
+    "spacing": 10
 }

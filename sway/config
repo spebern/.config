@@ -23,7 +23,7 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec env RUST_BACKTRACE=1 swayrd > /tmp/swayrd.log 2>&1
 exec nextcloud
 
-set $cl_high #00ff00
+set $cl_high #ef453e
 set $cl_indi #d9d8d8
 set $cl_back #231f20
 set $cl_fore #d9d8d8
