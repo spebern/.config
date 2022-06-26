@@ -21,6 +21,7 @@ set $term alacritty
 set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec env RUST_BACKTRACE=1 swayrd > /tmp/swayrd.log 2>&1
+exec gnome-keyring-daemon --start
 exec nextcloud
 
 set $cl_high #ef453e
@@ -44,14 +45,6 @@ exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
 output * bg ~/.config/sway/wallpaper.jpg fill
 
 exec --no-startup-id fcitx5 -d
-
-set $clipboard "~/.local/share/clipman.json"
-
-exec wl-paste -t text --watch clipman store --max-items 1024
-bindsym $mod+y exec clipman pick --tool="wofi" --max-items=30
-bindsym $mod+Shift+y exec clipman clear --all && clipman clear -t wofi
-
-exec mako
 
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
