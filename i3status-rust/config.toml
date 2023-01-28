@@ -1,0 +1,42 @@
+theme = "plain"
+icons = "awesome"
+ 
+[[block]]
+block = "cpu"
+interval = 0.7
+ 
+[[block]]
+block = "memory"
+interval = 5
+format_mem = "{mem_used;M}/{mem_total;M}({mem_used_percents})"
+format_swap = "{swap_used;M}/{swap_total;M}({swap_used_percents})" 
+
+[[block]]
+block = "disk_space"
+path = "/"
+alias = "/"
+info_type = "available"
+unit = "GB"
+interval = 20
+ 
+[[block]]
+block = "battery"
+device = "BAT0"
+ 
+[[block]]
+block = "sound"
+
+[[block]]
+block = "backlight"
+device = "amdgpu_bl0"
+
+[[block]]
+block = "bluetooth"
+mac = "A0:8A:F5:B8:01:FD"
+format = "Rowkin {percentage}"
+format_unavailable = "Rowkin x"
+ 
+[[block]]
+block = "time"
+interval = 60
+format = "%a %d/%m %R"

@@ -48,8 +48,3 @@ colors:
     magenta: '0xcc00ff'
     cyan:    '0x00ffff'
     white:   '0xFFFFFF'
-
-shell:
-  program: /usr/bin/fish
-  args:
-    - --login
