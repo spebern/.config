@@ -35,7 +35,6 @@ exec --no-startup-id fcitx5 -d
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
 dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec mako --default-timeout 10000
 
 # Take a screenshot with all output and save it into screenshots
 bindsym F11 exec grim -t jpeg ~/screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg
